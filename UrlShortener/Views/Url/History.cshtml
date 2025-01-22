@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Url>
+@{
+    ViewData["Title"] = "URL Shortener - History";
+}
+
+
+
+<div class="text-center">
+    <h1 class="display-4"> Shortened URLs History</h1>
+    <div class="container-table">
+        <table class="shortened-urls-table table table-bordered text-start">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Short URL</th>
+                    <th>Original URL</th>
+                    <th>Date Created</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var url in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a href="@url.BasicUrl" target="_blank">
+                                    @($"focusmr.eu/{url.GeneratedCode}")
+                                </a>
+                            </td>
+                            <td>@url.BasicUrl</td>
+                            <td>@url.CreationDate.ToString("yyyy-MM-dd")</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    
+</div>
